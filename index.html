@@ -75,14 +75,16 @@
     button, input, textarea { font: inherit; color: inherit; }
 
     .container { width: 100%; max-width: var(--container); padding: 0 clamp(1.2rem, 5vw, 2rem); margin: 0 auto; }
-    .section { padding: clamp(3rem, 6vw, 5rem) 0; position: relative; }
+    .section { padding: clamp(2.5rem, 5vw, 4rem) 0; position: relative; }
 
     .section-title {
       margin: 0 0 1.2rem;
-      font-size: clamp(1.4rem, 3vw, 2rem);
+      font-family: "Cormorant Garamond", serif;
+      font-size: clamp(2rem, 4vw, 2.8rem);
       line-height: 1.1;
-      font-weight: 200;
-      letter-spacing: -0.02em;
+      font-weight: 300;
+      letter-spacing: -0.01em;
+      color: var(--text);
     }
 
     .section-kicker {
@@ -254,8 +256,9 @@
     }
 
     .hero {
-      padding-top: calc(var(--nav-height) + 80px);
-      min-height: 100svh;
+      padding-top: calc(var(--nav-height) + 40px);
+      padding-bottom: 40px;
+      min-height: 80svh;
       display: flex;
       align-items: center;
     }
@@ -279,17 +282,18 @@
 
     .hero-title {
       margin: 0;
-      font-size: clamp(2.2rem, 4vw, 3.4rem);
+      font-family: "Cormorant Garamond", serif;
+      font-size: clamp(2.8rem, 5vw, 4.2rem);
       line-height: 1.05;
-      font-weight: 200;
-      letter-spacing: -0.02em;
+      font-weight: 300;
+      letter-spacing: -0.01em;
       white-space: pre-line;
       color: var(--text);
     }
 
     .hero-copy {
       max-width: 520px;
-      margin: 32px 0 48px;
+      margin: 24px 0 32px;
       color: var(--muted);
       font-size: 1.15rem;
       font-weight: 300;
@@ -336,12 +340,13 @@
     }
 
     .about-section {
-      padding: 5rem 0;
+      padding: clamp(2.5rem, 5vw, 4rem) 0;
     }
 
     .about-container {
-      max-width: 640px;
+      max-width: 720px;
       margin: 0 auto;
+      text-align: center;
     }
 
     .pull-quote {
@@ -349,16 +354,15 @@
       font-family: "Cormorant Garamond", serif;
       font-style: italic;
       font-weight: 300;
-      font-size: 1.15rem;
-      line-height: 1.5;
+      font-size: 1.4rem;
+      line-height: 1.4;
       color: var(--text);
-      border-left: 2px solid var(--accent);
-      padding-left: 1rem;
     }
 
     .about-copy {
       position: relative;
       padding-top: 32px;
+      margin-top: 32px;
       color: var(--muted);
       font-size: 1.1rem;
     }
@@ -366,7 +370,8 @@
     .about-copy::before {
       content: "";
       position: absolute;
-      top: 0; left: 0;
+      top: 0; left: 50%;
+      transform: translateX(-50%);
       width: 60px; height: 1px;
       background: var(--accent);
     }
@@ -379,7 +384,7 @@
 
     .services-grid {
       grid-template-columns: repeat(3, minmax(0, 1fr));
-      margin-top: 48px;
+      margin-top: 40px;
     }
 
     .service-card,
@@ -440,9 +445,10 @@
     .service-card h3,
     .offer-card h3 {
       margin: 0 0 16px;
-      font-size: 1.05rem;
+      font-family: "Cormorant Garamond", serif;
+      font-size: 1.6rem;
       font-weight: 400;
-      letter-spacing: 0.02em;
+      letter-spacing: 0;
     }
 
     .service-card p,
@@ -456,12 +462,12 @@
     .service-card p { flex-grow: 1; }
 
     .offers-section {
-      padding: 3rem 0;
+      padding: clamp(2.5rem, 5vw, 4rem) 0;
     }
 
     .offers-grid {
       grid-template-columns: repeat(2, minmax(0, 1fr));
-      margin-top: 48px;
+      margin-top: 40px;
     }
 
     .offer-card {
@@ -554,10 +560,11 @@
 
     .contact-phone {
       display: inline-block;
-      margin: 16px 0 48px;
-      font-size: 1.6rem;
-      font-weight: 200;
-      letter-spacing: 0.05em;
+      margin: 16px 0 32px;
+      font-family: "Cormorant Garamond", serif;
+      font-size: 2rem;
+      font-weight: 300;
+      letter-spacing: 0.02em;
       color: var(--text);
       position: relative;
     }
@@ -720,7 +727,7 @@
         padding-top: calc(var(--nav-height) + 60px);
       }
 
-      .hero-title { font-size: 2rem; }
+      .hero-title { font-size: 2.4rem; }
       .hero-figure-wrap { padding: 16px; }
       .hero-figure-wrap::before { transform: rotate(0); }
 
@@ -821,8 +828,8 @@ Moje wsparcie.</h1>
 
     <section class="section offers-section" id="oferty">
       <div class="container">
-        <div style="text-align: center; margin-bottom: 24px;">
-          <div class="section-kicker reveal" style="margin: 0 auto 0.5rem; --delay: 0.05s;">Oferty</div>
+        <div style="margin-bottom: 32px;">
+          <div class="section-kicker reveal" style="--delay: 0.05s;">Oferty</div>
           <h2 class="section-title reveal" style="--delay: 0.08s;">Aktualne oferty</h2>
         </div>
         
