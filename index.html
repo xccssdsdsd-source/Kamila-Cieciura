@@ -26,7 +26,7 @@
       --glass-border: rgba(0, 0, 0, 0.08);
       --shadow: 0 30px 60px rgba(0, 0, 0, 0.08);
       --shadow-soft: 0 15px 35px rgba(0, 0, 0, 0.04);
-      --container: 1100px;
+      --container: 1150px;
       --radius: 24px;
       --transition: 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
       --nav-height: 96px;
@@ -41,7 +41,7 @@
       font-weight: 300;
       color: var(--text);
       background: var(--bg);
-      font-size: 1rem;
+      font-size: 1.05rem;
       line-height: 1.7;
       -webkit-font-smoothing: antialiased;
       text-rendering: optimizeLegibility;
@@ -318,15 +318,14 @@
       position: relative;
       overflow: hidden;
       border-radius: calc(var(--radius) * 1.5);
-      height: 600px;
-      background: var(--bg-soft);
+      background: transparent;
       box-shadow: var(--shadow);
     }
 
     .hero-figure img {
       width: 100%;
-      height: 100%;
-      object-fit: cover;
+      height: auto;
+      display: block;
       filter: contrast(1.02);
       transition: transform 1.5s cubic-bezier(0.2, 0.8, 0.2, 1);
     }
@@ -420,9 +419,9 @@
     }
 
     .service-card:hover {
-      transform: none;
+      transform: translateY(-8px);
       border-color: var(--accent-pink);
-      box-shadow: none;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.06);
     }
 
     .icon {
@@ -490,7 +489,7 @@
 
     .offer-media {
       position: relative;
-      aspect-ratio: 16 / 10;
+      aspect-ratio: 3 / 2;
       background: var(--bg-soft);
       display: flex;
       align-items: center;
@@ -500,6 +499,11 @@
       font-style: italic;
       font-size: 1.4rem;
       overflow: hidden;
+      transition: transform var(--transition);
+    }
+
+    .offer-card:hover .offer-media {
+      transform: scale(1.03);
     }
 
     .offer-media::before {
@@ -658,14 +662,14 @@
 
     .reveal {
       opacity: 0;
-      transform: translateY(40px);
-      transition: opacity 1s cubic-bezier(0.2, 0.8, 0.2, 1), transform 1s cubic-bezier(0.2, 0.8, 0.2, 1);
+      transform: translateY(40px) scale(0.98);
+      transition: opacity 1s cubic-bezier(0.2, 0.8, 0.2, 1), transform 1.2s cubic-bezier(0.2, 0.8, 0.2, 1);
       transition-delay: var(--delay, 0s);
     }
 
     .reveal.is-visible {
       opacity: 1;
-      transform: translateY(0);
+      transform: translateY(0) scale(1);
     }
 
     .hero-copy.reveal,
@@ -674,16 +678,46 @@
       transition-duration: 1.2s;
     }
 
+    .realizacje-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 32px;
+      margin-top: 40px;
+    }
+
+    .realizacje-placeholder {
+      aspect-ratio: 3 / 2;
+      background: var(--bg-soft);
+      border: 1px dashed rgba(0, 0, 0, 0.1);
+      border-radius: var(--radius);
+      transition: all var(--transition);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--muted);
+      font-family: "Cormorant Garamond", serif;
+      font-style: italic;
+      font-size: 1.4rem;
+    }
+
+    .realizacje-placeholder:hover {
+      border-color: var(--accent);
+      border-style: solid;
+      background: var(--glass-bg);
+      transform: translateY(-6px);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.05);
+    }
+
     @media (max-width: 980px) {
       .hero-grid,
       .about-block,
       .services-grid,
-      .offers-grid {
+      .offers-grid,
+      .realizacje-grid {
         grid-template-columns: 1fr;
       }
       
       .hero-grid { gap: 6vh; }
-      .hero-figure { min-height: 500px; }
       .nav-links { gap: 24px; }
     }
 
@@ -750,6 +784,7 @@
         <a href="#o-mnie">O mnie</a>
         <a href="#uslugi">Usługi</a>
         <a href="#oferty">Oferty</a>
+        <a href="#realizacje">Realizacje</a>
         <a href="#kontakt" class="nav-cta">Skontaktuj się</a>
       </nav>
     </div>
@@ -772,7 +807,7 @@ Moje wsparcie.</h1>
 
         <div class="hero-figure-wrap reveal" style="--delay: 0.52s;">
           <figure class="hero-figure">
-            <img src="Zrzut ekranu 2026-04-21 181732.png" alt="Kamila Cieciura, agentka nieruchomości">
+            <img src="start.jpg" alt="Kamila Cieciura, agentka nieruchomości">
           </figure>
         </div>
       </div>
@@ -853,6 +888,22 @@ Moje wsparcie.</h1>
               <p>Doskonałny wybór na bezpieczną i stabilną życiowo lokatę kapitału.</p>
             </div>
           </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="realizacje">
+      <div class="container">
+        <div style="margin-bottom: 32px;">
+          <div class="section-kicker reveal" style="--delay: 0.05s;">Realizacje</div>
+          <h2 class="section-title reveal" style="--delay: 0.08s;">Wybrane realizacje</h2>
+        </div>
+        
+        <div class="realizacje-grid">
+          <div class="realizacje-placeholder reveal" style="--delay: 0.15s;">Miejsce na zdjęcie</div>
+          <div class="realizacje-placeholder reveal" style="--delay: 0.25s;">Miejsce na zdjęcie</div>
+          <div class="realizacje-placeholder reveal" style="--delay: 0.35s;">Miejsce na zdjęcie</div>
+          <div class="realizacje-placeholder reveal" style="--delay: 0.45s;">Miejsce na zdjęcie</div>
         </div>
       </div>
     </section>
