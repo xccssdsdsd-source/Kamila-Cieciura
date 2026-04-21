@@ -1,0 +1,831 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Kamila Cieciura — licencjonowana agentka nieruchomości w Lublinie i Warszawie. Premium wsparcie przy kupnie, sprzedaży i wynajmie nieruchomości.">
+  <meta property="og:title" content="Kamila Cieciura | Nieruchomości Premium">
+  <meta property="og:description" content="Kamila Cieciura — licencjonowana agentka nieruchomości w Lublinie i Warszawie. Premium wsparcie przy kupnie, sprzedaży i wynajmie nieruchomości.">
+  <meta property="og:image" content="main.jpg">
+  <link rel="icon" href="main.jpg" type="image/jpeg">
+  <title>Kamila Cieciura | Nieruchomości Premium</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;1,300;1,400&family=Raleway:wght@100;200;300;400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #fafaf8;
+      --bg-soft: #f0edea;
+      --rose: #d4a5a5;
+      --gold: #c9aa7c;
+      --text: #1c1a18;
+      --muted: #6e655d;
+      --line: #e8e4e0;
+      --shadow: 0 24px 60px rgba(28, 26, 24, 0.08);
+      --shadow-soft: 0 18px 40px rgba(28, 26, 24, 0.06);
+      --container: min(1180px, calc(100vw - 48px));
+      --radius: 28px;
+      --transition: 0.4s ease;
+      --nav-height: 92px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Raleway", sans-serif;
+      font-weight: 300;
+      color: var(--text);
+      background: linear-gradient(180deg, #fffdfa 0%, var(--bg) 30%, #f7f4f1 100%);
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button,
+    input,
+    textarea {
+      font: inherit;
+      color: inherit;
+    }
+
+    .container {
+      width: var(--container);
+      margin: 0 auto;
+    }
+
+    .section {
+      padding: 110px 0;
+    }
+
+    .section-title {
+      margin: 0 0 18px;
+      font-size: clamp(2.5rem, 6vw, 4.7rem);
+      line-height: 0.95;
+      font-weight: 200;
+      letter-spacing: 0.03em;
+    }
+
+    .section-kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 22px;
+      color: var(--muted);
+      font-size: 0.78rem;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+    }
+
+    .section-kicker::before {
+      content: "";
+      width: 42px;
+      height: 1px;
+      background: var(--gold);
+    }
+
+    .site-nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 20;
+      padding: 22px 0;
+      transition: padding var(--transition), background-color var(--transition), border-color var(--transition), backdrop-filter var(--transition), box-shadow var(--transition);
+      border-bottom: 1px solid transparent;
+    }
+
+    .site-nav.is-scrolled {
+      padding: 14px 0;
+      background: rgba(250, 250, 248, 0.92);
+      border-color: rgba(212, 165, 165, 0.28);
+      backdrop-filter: blur(14px);
+      box-shadow: 0 10px 30px rgba(28, 26, 24, 0.04);
+    }
+
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .brand {
+      font-family: "Cormorant Garamond", serif;
+      font-size: 2rem;
+      font-style: italic;
+      font-weight: 300;
+      letter-spacing: 0.02em;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 30px;
+      font-size: 0.95rem;
+      color: var(--muted);
+    }
+
+    .nav-links a {
+      position: relative;
+    }
+
+    .nav-links a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -8px;
+      width: 100%;
+      height: 1px;
+      background: var(--rose);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform var(--transition);
+    }
+
+    .nav-links a:hover::after,
+    .nav-links a:focus-visible::after {
+      transform: scaleX(1);
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 48px;
+      padding: 0 22px;
+      border: 1px solid transparent;
+      border-radius: 999px;
+      background: var(--text);
+      color: var(--bg);
+      font-size: 0.92rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      transition: transform var(--transition), background-color var(--transition), border-color var(--transition), color var(--transition), box-shadow var(--transition);
+      cursor: pointer;
+    }
+
+    .button:hover,
+    .button:focus-visible {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-soft);
+    }
+
+    .button-secondary {
+      background: transparent;
+      color: var(--text);
+      border-color: rgba(201, 170, 124, 0.45);
+    }
+
+    .button-secondary:hover,
+    .button-secondary:focus-visible {
+      border-color: var(--rose);
+      color: var(--text);
+    }
+
+    .hero {
+      padding-top: calc(var(--nav-height) + 56px);
+      min-height: 100svh;
+      display: flex;
+      align-items: center;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(320px, 0.9fr);
+      gap: 72px;
+      align-items: center;
+    }
+
+    .eyebrow {
+      margin-bottom: 18px;
+      color: var(--muted);
+      font-size: 0.78rem;
+      letter-spacing: 0.34em;
+      text-transform: uppercase;
+    }
+
+    .hero-title {
+      margin: 0;
+      font-size: clamp(3.9rem, 8vw, 7.6rem);
+      line-height: 0.9;
+      font-weight: 100;
+      letter-spacing: 0.02em;
+      white-space: pre-line;
+    }
+
+    .hero-copy {
+      max-width: 480px;
+      margin: 28px 0 34px;
+      color: var(--muted);
+      font-size: 1.05rem;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .hero-figure-wrap {
+      position: relative;
+      padding: 30px 22px 22px 30px;
+    }
+
+    .hero-figure-wrap::before,
+    .hero-figure-wrap::after {
+      content: "";
+      position: absolute;
+      pointer-events: none;
+    }
+
+    .hero-figure-wrap::before {
+      inset: 10px 0 0 10px;
+      border: 1px solid rgba(212, 165, 165, 0.55);
+      border-radius: 32px;
+    }
+
+    .hero-figure-wrap::after {
+      top: 0;
+      right: 8px;
+      width: 90px;
+      height: 90px;
+      border-top: 1px solid var(--gold);
+      border-right: 1px solid var(--gold);
+      border-radius: 0 24px 0 0;
+    }
+
+    .hero-figure {
+      position: relative;
+      overflow: hidden;
+      border-radius: 32px;
+      min-height: 640px;
+      background:
+        linear-gradient(180deg, rgba(212, 165, 165, 0.18), rgba(240, 237, 234, 0.24)),
+        #e8e1db;
+      box-shadow: var(--shadow);
+    }
+
+    .hero-figure img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: saturate(0.92) contrast(1.02);
+    }
+
+    .hero-figure::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(212, 165, 165, 0.2) 0%, rgba(250, 250, 248, 0.08) 100%);
+      mix-blend-mode: multiply;
+    }
+
+    .about-block {
+      background: var(--bg-soft);
+      border-radius: 36px;
+      padding: clamp(34px, 5vw, 64px);
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr);
+      gap: 52px;
+      align-items: start;
+    }
+
+    .pull-quote {
+      margin: 0;
+      font-family: "Cormorant Garamond", serif;
+      font-style: italic;
+      font-weight: 300;
+      font-size: clamp(2.4rem, 4.3vw, 4.2rem);
+      line-height: 1;
+      color: #5f534d;
+    }
+
+    .about-copy {
+      position: relative;
+      padding-top: 32px;
+      max-width: 560px;
+      color: var(--muted);
+      font-size: 1.02rem;
+    }
+
+    .about-copy::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 86px;
+      height: 1px;
+      background: var(--rose);
+    }
+
+    .services-grid,
+    .offers-grid {
+      display: grid;
+      gap: 24px;
+    }
+
+    .services-grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .service-card,
+    .offer-card {
+      transition: transform var(--transition), box-shadow var(--transition), border-color var(--transition);
+    }
+
+    .service-card {
+      padding: 34px 28px;
+      border: 1px solid var(--line);
+      border-top: 1px solid transparent;
+      border-radius: 26px;
+      background: rgba(255, 255, 255, 0.88);
+      box-shadow: 0 12px 34px rgba(28, 26, 24, 0.03);
+    }
+
+    .service-card:hover,
+    .service-card:focus-within {
+      transform: translateY(-8px);
+      border-top-color: var(--rose);
+      box-shadow: var(--shadow-soft);
+    }
+
+    .icon {
+      width: 42px;
+      height: 42px;
+      margin-bottom: 26px;
+      color: var(--text);
+    }
+
+    .service-card h3,
+    .offer-card h3 {
+      margin: 0 0 12px;
+      font-size: 1.28rem;
+      font-weight: 300;
+      letter-spacing: 0.02em;
+    }
+
+    .service-card p,
+    .offer-card p,
+    .offer-price {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.98rem;
+    }
+
+    .offers-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .offer-card {
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: 28px;
+      background: rgba(255, 255, 255, 0.94);
+      box-shadow: 0 16px 36px rgba(28, 26, 24, 0.04);
+    }
+
+    .offer-card:hover,
+    .offer-card:focus-within {
+      transform: translateY(-6px) scale(1.01);
+      box-shadow: var(--shadow-soft);
+    }
+
+    .offer-media {
+      position: relative;
+      aspect-ratio: 1.3 / 1;
+      background:
+        linear-gradient(135deg, rgba(212, 165, 165, 0.16), transparent 55%),
+        linear-gradient(180deg, #ece7e2 0%, #e5dfd8 100%);
+    }
+
+    .offer-media::after {
+      content: "";
+      position: absolute;
+      inset: 18px;
+      border: 1px solid rgba(255, 255, 255, 0.46);
+      border-radius: 18px;
+    }
+
+    .offer-content {
+      padding: 24px 24px 26px;
+    }
+
+    .offer-tag {
+      display: inline-block;
+      margin-bottom: 14px;
+      color: #7c6c64;
+      font-size: 0.78rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+    }
+
+    .offer-price {
+      margin-top: 18px;
+      font-size: 1.06rem;
+      color: var(--text);
+    }
+
+    .contact-section {
+      background: linear-gradient(180deg, rgba(240, 237, 234, 0.85) 0%, rgba(250, 250, 248, 0.95) 100%);
+      border-radius: 38px;
+      text-align: center;
+      padding: clamp(42px, 6vw, 72px);
+    }
+
+    .contact-intro {
+      max-width: 640px;
+      margin: 0 auto 22px;
+      color: var(--muted);
+    }
+
+    .contact-phone {
+      display: inline-block;
+      margin: 12px 0 40px;
+      font-size: clamp(2rem, 5vw, 3.6rem);
+      font-weight: 200;
+      letter-spacing: 0.04em;
+    }
+
+    .contact-form {
+      max-width: 720px;
+      margin: 0 auto;
+      display: grid;
+      gap: 26px;
+    }
+
+    .field {
+      text-align: left;
+    }
+
+    .field label {
+      display: block;
+      margin-bottom: 10px;
+      color: var(--muted);
+      font-size: 0.82rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+    }
+
+    .field input,
+    .field textarea {
+      width: 100%;
+      padding: 10px 2px 14px;
+      border: 0;
+      border-bottom: 1px solid rgba(28, 26, 24, 0.22);
+      background: transparent;
+      outline: none;
+      transition: border-color var(--transition);
+      resize: vertical;
+    }
+
+    .field input:focus,
+    .field textarea:focus {
+      border-bottom-color: var(--rose);
+    }
+
+    .field textarea {
+      min-height: 120px;
+    }
+
+    .footer {
+      padding: 28px 0 42px;
+      border-top: 1px solid rgba(212, 165, 165, 0.48);
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    .footer-line {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(36px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+      transition-delay: var(--delay, 0s);
+    }
+
+    .reveal.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .hero-copy.reveal,
+    .hero-actions.reveal,
+    .hero-figure-wrap.reveal {
+      transition-duration: 1s;
+    }
+
+    @media (max-width: 980px) {
+      .hero-grid,
+      .about-block,
+      .services-grid,
+      .offers-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-figure {
+        min-height: 520px;
+      }
+
+      .nav-links {
+        gap: 18px;
+      }
+    }
+
+    @media (max-width: 767px) {
+      :root {
+        --container: min(100vw - 28px, 100%);
+        --nav-height: 84px;
+      }
+
+      .section {
+        padding: 84px 0;
+      }
+
+      .site-nav {
+        padding: 18px 0;
+      }
+
+      .nav-inner {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .nav-links {
+        width: 100%;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        gap: 14px;
+        font-size: 0.88rem;
+      }
+
+      .brand {
+        font-size: 1.8rem;
+      }
+
+      .button {
+        min-height: 46px;
+        width: 100%;
+      }
+
+      .hero {
+        min-height: auto;
+        padding-top: calc(var(--nav-height) + 72px);
+      }
+
+      .hero-grid {
+        gap: 40px;
+      }
+
+      .hero-title {
+        font-size: clamp(3rem, 16vw, 4.4rem);
+      }
+
+      .hero-copy {
+        margin-bottom: 26px;
+      }
+
+      .hero-actions {
+        flex-direction: column;
+      }
+
+      .hero-figure-wrap {
+        padding: 18px 14px 14px 18px;
+      }
+
+      .hero-figure {
+        min-height: 420px;
+      }
+
+      .contact-phone {
+        letter-spacing: 0.02em;
+      }
+
+      .footer-line {
+        flex-direction: column;
+        gap: 8px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-nav" id="site-nav">
+    <div class="container nav-inner">
+      <a class="brand" href="#start">Kamila Cieciura</a>
+      <nav class="nav-links" aria-label="Nawigacja główna">
+        <a href="#o-mnie">O mnie</a>
+        <a href="#uslugi">Usługi</a>
+        <a href="#oferty">Oferty</a>
+        <a href="#kontakt" class="button">Skontaktuj się</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="start">
+    <section class="hero section">
+      <div class="container hero-grid">
+        <div>
+          <p class="eyebrow reveal" style="--delay: 0.05s;">Lublin &amp; Warszawa · Nieruchomości Premium</p>
+          <h1 class="hero-title reveal" style="--delay: 0.15s;">Twój dom.
+Twoja decyzja.
+Moje wsparcie.</h1>
+          <p class="hero-copy reveal" style="--delay: 0.28s;">Pomagam sprzedawać, kupować i wynajmować nieruchomości z wyczuciem rynku, spokojem procesu i standardem obsługi, który buduje zaufanie od pierwszej rozmowy.</p>
+          <div class="hero-actions reveal" style="--delay: 0.4s;">
+            <a class="button" href="#kontakt">Umów rozmowę</a>
+            <a class="button button-secondary" href="tel:+48660734328">Zadzwoń: 660 734 328</a>
+          </div>
+        </div>
+
+        <div class="hero-figure-wrap reveal" style="--delay: 0.52s;">
+          <figure class="hero-figure">
+            <img src="Zrzut ekranu 2026-04-21 181732.png" alt="Kamila Cieciura, agentka nieruchomości">
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="o-mnie">
+      <div class="container">
+        <div class="about-block reveal">
+          <div>
+            <div class="section-kicker">O mnie</div>
+            <p class="pull-quote">Nieruchomość to nie tylko adres. To decyzja, która powinna być poprowadzona spokojnie, uważnie i z klasą.</p>
+          </div>
+          <div class="about-copy">
+            Nazywam się Kamila Cieciura i jestem licencjonowaną agentką nieruchomości, działającą na rynku Lublina i Warszawy. Łączę estetykę prezentacji z praktyką sprzedaży, dzięki czemu każda współpraca ma jasny kierunek: bezpieczeństwo procesu, mocne pozycjonowanie oferty i realny rezultat. Pracuję osobiście, z dbałością o szczegóły, komunikację i tempo dopasowane do klienta.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="uslugi">
+      <div class="container">
+        <div class="section-kicker reveal">Usługi</div>
+        <h2 class="section-title reveal" style="--delay: 0.08s;">Strategiczne wsparcie na każdym etapie.</h2>
+        <div class="services-grid">
+          <article class="service-card reveal" style="--delay: 0.12s;">
+            <svg class="icon" viewBox="0 0 48 48" fill="none" aria-hidden="true">
+              <path d="M8 22.5 24 10l16 12.5V39H8V22.5Z" stroke="currentColor" stroke-width="1.2"/>
+              <path d="M18 39V27h12v12" stroke="currentColor" stroke-width="1.2"/>
+              <path d="M14 19h20" stroke="#C9AA7C" stroke-width="1.1"/>
+            </svg>
+            <h3>Kupno</h3>
+            <p>Selekcja ofert, analiza potencjału i wsparcie w negocjacjach, aby zakup był przemyślany i bezpieczny.</p>
+          </article>
+
+          <article class="service-card reveal" style="--delay: 0.22s;">
+            <svg class="icon" viewBox="0 0 48 48" fill="none" aria-hidden="true">
+              <path d="M10 36h28" stroke="currentColor" stroke-width="1.2"/>
+              <path d="M14 36V18l10-6 10 6v18" stroke="currentColor" stroke-width="1.2"/>
+              <path d="M24 12v24" stroke="#C9AA7C" stroke-width="1.1"/>
+            </svg>
+            <h3>Sprzedaż</h3>
+            <p>Od przygotowania nieruchomości i prezentacji po prowadzenie procesu sprzedaży z naciskiem na jakość leadów.</p>
+          </article>
+
+          <article class="service-card reveal" style="--delay: 0.32s;">
+            <svg class="icon" viewBox="0 0 48 48" fill="none" aria-hidden="true">
+              <path d="M10 35c4-8.667 24-8.667 28 0" stroke="currentColor" stroke-width="1.2"/>
+              <path d="M15 35V16h18v19" stroke="currentColor" stroke-width="1.2"/>
+              <circle cx="24" cy="24" r="3" stroke="#C9AA7C" stroke-width="1.1"/>
+            </svg>
+            <h3>Wynajem</h3>
+            <p>Profesjonalna obsługa najmu z dbałością o właściwy dobór najemcy, warunki umowy i sprawność całego procesu.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="oferty">
+      <div class="container">
+        <div class="section-kicker reveal">Aktualne oferty</div>
+        <h2 class="section-title reveal" style="--delay: 0.08s;">Wybrane nieruchomości w przygotowaniu.</h2>
+        <div class="offers-grid">
+          <article class="offer-card reveal" style="--delay: 0.12s;">
+            <div class="offer-media" aria-hidden="true"></div>
+            <div class="offer-content">
+              <span class="offer-tag">Lublin · 69m²</span>
+              <h3>Apartament z tarasem i światłem dziennym</h3>
+              <p>Nowoczesna przestrzeń dla osób szukających spokoju, jakości i dobrej lokalizacji.</p>
+              <p class="offer-price">Cena na zapytanie</p>
+            </div>
+          </article>
+
+          <article class="offer-card reveal" style="--delay: 0.2s;">
+            <div class="offer-media" aria-hidden="true"></div>
+            <div class="offer-content">
+              <span class="offer-tag">Warszawa · 84m²</span>
+              <h3>Mieszkanie premium w kameralnej inwestycji</h3>
+              <p>Układ zaprojektowany z myślą o komforcie codziennym i reprezentacyjnym charakterze wnętrza.</p>
+              <p class="offer-price">Cena na zapytanie</p>
+            </div>
+          </article>
+
+          <article class="offer-card reveal" style="--delay: 0.28s;">
+            <div class="offer-media" aria-hidden="true"></div>
+            <div class="offer-content">
+              <span class="offer-tag">Lublin · 112m²</span>
+              <h3>Dom miejski z prywatnym ogrodem</h3>
+              <p>Oferta dla rodzin, które cenią wygodę, funkcjonalność i starannie dobraną okolicę.</p>
+              <p class="offer-price">Cena na zapytanie</p>
+            </div>
+          </article>
+
+          <article class="offer-card reveal" style="--delay: 0.36s;">
+            <div class="offer-media" aria-hidden="true"></div>
+            <div class="offer-content">
+              <span class="offer-tag">Warszawa · 47m²</span>
+              <h3>Eleganckie studio pod inwestycję lub najem</h3>
+              <p>Przemyślany metraż, ponadczasowa lokalizacja i duży potencjał sprzedażowy lub najemny.</p>
+              <p class="offer-price">Cena na zapytanie</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="kontakt">
+      <div class="container">
+        <div class="contact-section reveal">
+          <div class="section-kicker">Kontakt</div>
+          <h2 class="section-title">Porozmawiajmy o Twojej nieruchomości.</h2>
+          <p class="contact-intro">Jeśli chcesz sprzedać, kupić lub wynająć nieruchomość w Lublinie lub Warszawie, napisz lub zadzwoń. Odpowiadam osobiście.</p>
+          <a class="contact-phone" href="tel:+48660734328">660 734 328</a>
+
+          <form class="contact-form" action="#" method="post">
+            <div class="field">
+              <label for="name">Imię</label>
+              <input id="name" name="name" type="text" placeholder="Twoje imię" required>
+            </div>
+
+            <div class="field">
+              <label for="email">Email</label>
+              <input id="email" name="email" type="email" placeholder="twoj@email.pl" required>
+            </div>
+
+            <div class="field">
+              <label for="message">Wiadomość</label>
+              <textarea id="message" name="message" placeholder="Opisz krótko, czego potrzebujesz." required></textarea>
+            </div>
+
+            <button class="button" type="submit">Wyślij wiadomość</button>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-line">
+      <span>Kamila Cieciura · licencja PFRN 29936</span>
+      <span><a href="https://www.instagram.com/kamila_cieciura_nieruchomosci/" target="_blank" rel="noreferrer noopener">@kamila_cieciura_nieruchomosci</a> · Lublin / Warszawa</span>
+    </div>
+  </footer>
+
+  <script>
+    const nav = document.getElementById("site-nav");
+    const revealItems = document.querySelectorAll(".reveal");
+
+    const updateNav = () => {
+      nav.classList.toggle("is-scrolled", window.scrollY > 18);
+    };
+
+    updateNav();
+    window.addEventListener("scroll", updateNav, { passive: true });
+
+    const observer = new IntersectionObserver((entries, currentObserver) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add("is-visible");
+        currentObserver.unobserve(entry.target);
+      });
+    }, {
+      threshold: 0.18,
+      rootMargin: "0px 0px -8% 0px"
+    });
+
+    revealItems.forEach((item) => observer.observe(item));
+  </script>
+</body>
+</html>
